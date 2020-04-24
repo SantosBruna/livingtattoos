@@ -5,7 +5,6 @@ import{
     View,
     ImageBackground,
     TouchableOpacity,
-    Alert
 } from 'react-native'
 import axios from 'axios'
 import { server, showError } from '../common'
@@ -13,7 +12,7 @@ import backgroundImage from '../../assets/imgs/crop.jpeg'
 import AuthInput from '../components/AuthInput'
 
 
-export default class Auth extends Component {
+class Auth extends Component {
 
     state = {
         stageNew: false,
@@ -23,23 +22,8 @@ export default class Auth extends Component {
         confirmPassword: '',
     }
 
-    signinOrSignup = async () => {
-        if (this.state.stageNew) {
-            try {
-                await axios.post(`${server}/signup`, {
-                    name:this.state.name,
-                    email: this.state.email,
-                    password: this.state.password,
-                    confirmPassword:this.state.confirmPassword,
-                })
+    signin = async () => {
 
-                Alert.alert('Sucesso!', 'Usuario cadastrado ')
-                this.setState({ stageNew: false })
-            } catch (err) {
-                showError(err)
-            }
-
-        } else {
             try {
                 const res = await axios.post(`${server}/signin`, {
                     email: this.state.email,
@@ -55,7 +39,6 @@ export default class Auth extends Component {
 
             }
         }
-    }
 
     render() {
         return(
@@ -72,14 +55,21 @@ export default class Auth extends Component {
                             <AuthInput icon='user' placeholder='Nome' style={styles.input} value={this.state.name} onChangeText={name => this.setState({ name})}/>}
                             <AuthInput icon='at' placeholder='E-mail' style={styles.input} value={this.state.email} onChangeText={email => this.setState({ email })}/>
                             <AuthInput icon='lock' secureTextEntry={true} placeholder='Senha' style={styles.input} value={this.state.password} onChangeText={password => this.setState({ password })}/>
-                            {this.state.stageNew &&
-                            <AuthInput icon='asterisk' secureTextEntry={true} placeholder='Confirmação' style={styles.input} value={this.state.confirmPassword} onChangeText={confirmPassword => this.setState({ confirmPassword })}/>
-                            }
+                    {this.state.stageNew &&
+                            <AuthInput icon='asterisk' secureTextEntry={true} placeholder='Confirmação' style={styles.input} value={this.state.confirmPassword} onChangeText={confirmPassword => this.setState({ confirmPassword })}/>}
+                    {this.state.stageNew &&
+                            <TouchableOpacity style={styles.buttom2} onPress= {() => this.props.navigation.navigate('AddTatto', this.state)}>
+                                <Text style={styles.buttomText}>Adicione a sua tatuagem aqui!</Text>
+                            </TouchableOpacity>}
 
-                    <TouchableOpacity onPress={this.signinOrSignup}>
+
+
+
+
+                    <TouchableOpacity onPress={this.signin}>
                         <View>
-                            <Text style={styles.buttomText}>
-                                {this.state.stageNew? 'Registrar': 'Entrar'}
+                            <Text style={styles.buttomText2}>
+                                {this.state.stageNew ? ' ': 'Entrar'}
                             </Text>
                         </View>
                     </TouchableOpacity>
@@ -128,10 +118,20 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
     },
+    buttom2: {
+        padding: 20,
+        alignItems:'center',
+    },
     buttomText: {
         fontFamily: 'Lato',
         color:'#FFF',
         fontSize: 20,
-
+    },
+    buttomText2: {
+        fontFamily: 'Lato',
+        color:'#FFF',
+        fontSize: 20,
     }
 })
+
+export default Auth

@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import AddTatto from './src/screens/AddTatto';
+import Navigator from './src/Navigator';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => AddTatto);
+AppRegistry.registerComponent(appName, () => Navigator);

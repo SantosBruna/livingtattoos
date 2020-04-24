@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text,Image, TouchableOpacity, View} from 'react-native';
 import AuthInput from '../components/AuthInput';
-import backgroundImage from '../../assets/imgs/orion.jpg'
 import AddTatto from './AddTatto';
 
 
@@ -19,16 +18,24 @@ class Home extends Component {
                     </View>
                 </View>
 
-                {/*<View style={styles.rowContainer}>*/}
-                {/*    <ImageBackground source={backgroundImage} style={styles.background}>*/}
-                {/*        <View style={styles.article}>*/}
-                {/*            <Text style={styles.subtitle} > Que tal adicionar a sua tattoo no Viveiro?</Text>*/}
-                {/*            <TouchableOpacity onPress= >*/}
-                {/*            <Text style={styles.subtitle} >Para isso clique aqui!</Text>*/}
-                {/*            </TouchableOpacity>*/}
-                {/*        </View>*/}
-                {/*    </ImageBackground>*/}
-                {/*</View>*/}
+                <View style={styles.rowContainer}>
+                    <Image source={require('../../assets/imgs/cobraViva.jpg')} style={styles.image}/>
+                        <View style={styles.article}>
+                            <Text style={styles.subtitle} > Que tal adicionar a sua tattoo no Viveiro?</Text>
+                            <TouchableOpacity onPress= {() => this.props.navigation.navigate('AddTatto')}>
+                            <Text style={styles.textButton} >Para isso clique aqui!</Text>
+                            </TouchableOpacity>
+                        </View>
+                </View>
+                <View style={styles.rowContainer}>
+                    <Image source={require('../../assets/imgs/gate2.jpg')} style={styles.image}/>
+                    <View style={styles.article}>
+                        <Text style={styles.subtitle} > Entregue-se ao desconhecido</Text>
+                        <TouchableOpacity onPress= {() => this.props.navigation.navigate('Viveiro')}>
+                            <Text style={styles.textButton} >Entre no viveiro por aqui</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         )
     }
@@ -65,10 +72,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         },
     article: {
+        marginTop: 30,
+        marginLeft:30,
         fontSize: 90,
     },
     subtitle:{
-        color: '#FFF',
+        color: '#000',
+    },
+    textButton: {
+        fontWeight: 'bold'
+
+    },
+    image: {
+        marginTop: 30,
+        borderRadius: 300,
+        width:80,
+        height:66,
+
     }
 })
 

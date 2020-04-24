@@ -3,6 +3,7 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import Home from './screens/Home'
 import Auth from './screens/Auth'
 import AddTatto from './screens/AddTatto';
+import Viveiro from './screens/Viveiro';
 
 const MainRoutes = {
     Auth: {
@@ -16,6 +17,10 @@ const MainRoutes = {
     AddTatto: {
         name: 'AddTatto',
         screen: AddTatto
+    },
+    Viveiro: {
+        name: 'Viveiro',
+        screen: Viveiro
     }
 }
 
