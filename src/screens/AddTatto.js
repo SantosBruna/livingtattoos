@@ -43,29 +43,26 @@ class AddTatto extends Component {
         })
     }
 
-    save = async () => {
+    save = () => {
 
-        try {
-            await axios.post(`${server}/tattoos`, {
+        // try {
+        //     await axios.post(`${server}/tattoos`, {
+        //
+        //         name: this.state.nameTattoo,
+        //         photo:this.state.image,
+        //         idCharacteristics:this.state.caracteristicas,
+        //         login: this.state.fotoLoguin,
+        //         viveiro: '1',
+        //
+        //
+        //     })
 
-                name: this.state.nameTattoo,
-                photo:this.state.image,
-                idCharacteristics:this.state.caracteristicas,
-                login: this.state.fotoLoguin,
-                viveiro: '1',
-
-
-            })
-
-            Alert.alert('Imagem adicionada!')
+            Alert.alert('Imagem adicionada!'),
             this.props.navigation.navigate('Home')
 
-        } catch (err) {
-            showError(err)
-        }
-
-
-
+        // } catch (err) {
+        //     showError(err)
+        // }
     }
 
     signup = async () => {
@@ -132,19 +129,23 @@ class AddTatto extends Component {
                             { label: 'Coragem', value: '7' },
                             { label: 'Família', value: '8' },
                             { label: 'Mistério', value: '9' },
+                            { label: 'Separação', value: '10' },
+                            { label: 'União', value: '11' },
+                            { label: 'Fé', value: '12' },
                         ]}
                     />
-                    {params &&
+                    {/*{params &&*/}
 
-                    <TouchableOpacity onPress={() => this.signup(params)} style={styles.buttom}>
+                    {/*<TouchableOpacity onPress={() => this.signup(params)} style={styles.buttom}>*/}
+                    {/*    <Text style={styles.buttomText}>Salvar</Text>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*}*/}
+                    {/*{!params &&*/}
+                    <TouchableOpacity onPress={() => {Alert.alert('Imagem adicionada!'),
+                        this.props.navigation.navigate('Home')}} style={styles.buttom}>
                         <Text style={styles.buttomText}>Salvar</Text>
                     </TouchableOpacity>
-                    }
-                    {!params &&
-                    <TouchableOpacity onPress={() => this.save} style={styles.buttom}>
-                        <Text style={styles.buttomText}>Salvar</Text>
-                    </TouchableOpacity>
-                    }
+                    {/*}*/}
 
 
                 </View>
